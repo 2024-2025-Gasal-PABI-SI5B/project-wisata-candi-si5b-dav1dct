@@ -1,6 +1,6 @@
 {
-    "name": "wisata_candi",
-    "short_name": "wisata_candi",
+    "name": "wisatacandi",
+    "short_name": "wisatacandi",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
