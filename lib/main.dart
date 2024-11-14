@@ -1,26 +1,70 @@
+// lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:wisatacandi/data/candi_data.dart';
-import 'package:wisatacandi/screens/detail_screen.dart';
+import 'package:wisatacandi/screens/register_screen.dart';
+
 
 void main() {
-  runApp(const MainApp());
+  runApp(WisataCandiApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class WisataCandiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Wisata Candi',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true
+        primarySwatch: Colors.blue,
       ),
-      home:DetailScreen(
-        candi: candiList[0],),
+      home: RegisterScreen(),
     );
   }
 }
 
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
 
+class _MainScreenState extends State<MainScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        unselectedItemColor: Colors.black, // Ikon tidak terpilih berwarna hitam
+        selectedItemColor: Colors.blue,    // Ikon terpilih berwarna biru
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorite',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+      ),
+    );
+  }
+}
